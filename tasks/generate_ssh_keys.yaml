@@ -25,6 +25,9 @@
         User core
         IdentityFile {{ ansible_env.HOME }}/.ssh/helper_rsa
   loop: "{{ masters }}"
+  when:
+    - masters is defined
+    - masters | length > 0
 
 - blockinfile:
     path: "{{ ansible_env.HOME }}/.ssh/config"
